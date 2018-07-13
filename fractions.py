@@ -41,10 +41,15 @@ class Fraction:
 
     def __sub__(self, other):
         new_num = self.num * other.den - other.num * self.den
-        new_den = self.den = other.den
-        return 
+        new_den = self.den * other.den
+        common = reduc(new_num, new_den)
+        return Fraction(new_num // common, new_den // common)
+
+    def __lt__(self, other):
+        first_n = self.num / self.den
+        sec_n = other.num / other.den
+        return first_n < sec_n
 
 
 
-
-print(Fraction(1,2) / Fraction(1,2))
+print(Fraction(4,6) < Fraction(3,6))
