@@ -134,6 +134,18 @@ class NorGate(BinaryGate):
             return 1
 
 
+class XorGate(NorGate):
+
+    def performGateLogic(self):
+        a = self.getPinA()
+        b = self.getPinB()
+
+        if a == 1 and b == 1 or a == 0 and b == 0:
+            return 0
+        else:
+            return 1
+
+
 class Connector:
 
     def __init__(self, fgate, tgate):
@@ -150,14 +162,16 @@ class Connector:
 
 
 def main():
-    g1 = AndGate("G1")
-    g2 = AndGate("G2")
-    g3 = OrGate("G3")
-    g4 = NotGate("G4")
-    c1 = Connector(g1, g3)
-    c2 = Connector(g2, g3)
-    c3 = Connector(g3, g4)
-    print(g4.getOutput())
+    # g1 = AndGate("G1")
+    # g2 = AndGate("G2")
+    # g3 = OrGate("G3")
+    # g4 = NotGate("G4")
+    # c1 = Connector(g1, g3)
+    # c2 = Connector(g2, g3)
+    # c3 = Connector(g3, g4)
+    # print(g4.getOutput())
+    gx = XorGate("GX1")
+    print(gx.getOutput())
 
 
 main()
