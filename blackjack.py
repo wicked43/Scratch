@@ -9,6 +9,7 @@ values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eig
 
 playing = True
 
+
 class Card:
     def __init__(self, suit, rank):
         self.suit = suit
@@ -90,9 +91,9 @@ def hit(deck, hand):
 def hit_or_stand(deck, hand):
     global playing
     choise = input("Want to hit (h) or stand (s)? ")
-    if choise == "hit" or "h":
+    if choise == "hit" or choise == "h":
         hit(deck, hand)
-    elif choise == "stand" or "s":
+    elif choise == "stand" or choise == "s":
         playing = False
 
 
@@ -162,32 +163,31 @@ while True:
             player_busts(player_chips)
             break
 
-        if player_hand.value <= 21:
+    if player_hand.value <= 21:
 
-            while dealer_hand.value < 17:
-                hit(deck, dealer_hand)
+        while dealer_hand.value < 17:
+            hit(deck, dealer_hand)
 
-            show_all(player_hand, dealer_hand)
+        show_all(player_hand, dealer_hand)
 
-            if dealer_hand.value > 21:
-                dealer_busts(player_chips)
+        if dealer_hand.value > 21:
+            dealer_busts(player_chips)
 
-            elif dealer_hand.value > player_hand.value:
-                dealer_wins(player_chips)
+        elif dealer_hand.value > player_hand.value:
+            dealer_wins(player_chips)
 
-            elif dealer_hand.value < player_hand.value:
-                player_wins(player_chips)
+        elif dealer_hand.value < player_hand.value:
+            player_wins(player_chips)
 
-            else:
-                tie()
-
-        print("\nPlayer's winnings stand at", player_chips.total)
-        new_game = input('Play again? y/n')
-
-        if new_game[0].lower() == 'y':
-            playing = True
-            continue
         else:
-            print('Thanks for playing!')
-            break
+            tie()
 
+    print("\nPlayer's winnings stand at", player_chips.total)
+    new_game = input('Play again? y/n')
+
+    if new_game[0].lower() == 'y':
+        playing = True
+        continue
+    else:
+        print('Thanks for playing!')
+        break
