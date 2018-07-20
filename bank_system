@@ -1,0 +1,25 @@
+class Account:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
+
+    def __str__(self):
+        return 'Account owner: ' + str(self.owner) + '\nAccount-Balance: ' + str(self.balance)
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f'{amount} deposited! New Balance {self.balance}')
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print(f'Not enough Funds! Max withdraw: {self.balance}')
+        else:
+            self.balance -= amount
+            print(f'{amount} withdrawn! New Balance {self.balance}')
+
+
+myobj = Account("John", 300)
+print(myobj)
+myobj.deposit(100)
+myobj.withdraw(600)
+myobj.withdraw(200)
